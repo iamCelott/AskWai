@@ -27,11 +27,14 @@ const Home = () => {
         content: inputData,
         API_KEY: import.meta.env.VITE_GROQ_API_KEY,
       };
-      const response = await fetch("http://localhost:3000/chat-to-groq", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        "https://askwai-server.vercel.app/chat-to-groq",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        }
+      );
       const result = await response.json();
       const aiResponse = result.record;
       setAiChat((prev) => [...prev, aiResponse]);
